@@ -7,12 +7,47 @@
 	<script src="index.js"></script>
 	<style>
 		body {
-			font-family: monospace;
+			font-family: sans-serif;
+			padding-left: calc(5vw + 20px);
+			padding-right: calc(5vw + 20px);
 		}
+
+		h1 {
+			text-align: center;
+		}
+
+		textarea {
+			font-family: monospace;
+			display: block;
+			width: 100%;
+			resize: vertical;
+		}
+
+		.textTitle {
+			display: block;
+			margin-top: 20px;
+		}
+
 	</style>
 </head>
 
 <body>
-	Put down some textarea things and such in here.
+	<div>
+		<h1>Message Encryption website</h1>
+		<h2>Usage tips:</h2>
+		
+			Avoid leading and trailing spaces! They can affect the translation of your message. It is highly recommended to use underscores instead.
+		
+		<h2>Pi Cipher</h2>
+		<h3>How it works:</h3>
+		Add the digits of Pi to your letters! In the example message, "Hello World!", 3 will be added to H, making it K. 1 is added to e, making it f. Add 4 to l and get p, add 1 to l and get m, etc.
+
+		<b class="textTitle">Unencrypted message goes here:</b>
+		<textarea id="piUnencrypted" oninput="pi_code('piUnencrypted','piEncrypted');">This is an example message.</textarea>
+		<b class="textTitle">Encrypted message goes here:</b>
+		<textarea id="piEncrypted" oninput="pi_code('piEncrypted','piUnencrypted');">This is an example message.</textarea>
+		<br/><br/>more to come soon!
+	</div>
+
 </body>
 </html>
