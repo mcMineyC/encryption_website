@@ -16,6 +16,10 @@
 			text-align: center;
 		}
 
+		h3 {
+			margin-bottom: 2px;
+		}
+
 		textarea {
 			font-family: monospace;
 			display: block;
@@ -36,11 +40,22 @@
 		<h1>Message Encryption website</h1>
 		<h2>Usage tips:</h2>
 		
-			Avoid leading and trailing spaces! They can affect the translation of your message. It is highly recommended to use underscores instead.
-		
+			<p>Avoid leading and trailing spaces! They can affect the translation of your message. It is highly recommended to use underscores instead.</p>
+
 		<h2>Pi Cipher</h2>
-		<h3>How it works:</h3>
-		Add the digits of Pi to your letters! In the example message, "Hello World!", 3 will be added to H, making it K. 1 is added to e, making it f. Add 4 to l and get p, add 1 to l and get m, etc.
+		<p>
+			<b>How it works:</b>
+			Add the digits of Pi to your letters! In the example message, "Hello World!", 3 will be added to H, making it K. 1 is added to e, making it f. Add 4 to l and get p, add 1 to l and get m, etc.
+		</p>
+		<p>
+			<b>Stats:</b>
+			<ul>
+				<li>Accepted characters: all</li>
+				<li>Case sensitive: yes</li>
+				<li>Underscores prefered: doesn't matter</li>
+				<li>Uses randomness in encryption: no</li>
+			</ul>
+		</p>
 
 		<b class="textTitle">Unencrypted message goes here:</b>
 		<textarea id="piUnencrypted" oninput="pi_code('piUnencrypted','piEncrypted');">This is an example message.</textarea>
