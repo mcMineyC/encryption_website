@@ -38,9 +38,6 @@
 <body>
 	<div>
 		<h1>Message Encryption website</h1>
-		<h2>Usage tips:</h2>
-		
-			<p>Avoid leading and trailing spaces! They can affect the translation of your message. It is highly recommended to use underscores instead.</p>
 
 		<h2>Pi Cipher</h2>
 		<p>
@@ -50,9 +47,9 @@
 		<p>
 			<b>Stats:</b>
 			<ul>
-				<li>Accepted characters: all</li>
+				<li>Type: Vigenère cipher (but with an infinite keyword!)</li>
+				<li>Accepted characters: all (non-letters remain unchanged)</li>
 				<li>Case sensitive: yes</li>
-				<li>Underscores prefered: doesn't matter</li>
 				<li>Uses randomness in encryption: no</li>
 			</ul>
 		</p>
@@ -61,7 +58,51 @@
 		<textarea id="piUnencrypted" oninput="pi_code('piUnencrypted','piEncrypted');">This is an example message.</textarea>
 		<b class="textTitle">Encrypted message goes here:</b>
 		<textarea id="piEncrypted" oninput="pi_code('piEncrypted','piUnencrypted');">Wimt nb ct jafuysn pgvaemg.</textarea>
-		<br/><br/>more to come soon!
+		<br/><br/>
+
+		<h2>keyboard Shift Cipher</h2>
+		<p>
+			<b>How it works:</b>
+			To encrypt a message with this cipher on your keyboard, simply shift your fingers over one key to the right and start typing! The rightmost keys wrap around. "Qwerty" becomes "Wertyu" and so forth.
+		</p>
+		<p>
+			<b>Stats:</b>
+			<ul>
+				<li>Type: Substitution cipher</li>
+				<li>Accepted characters: all (non-qwerty characters remain unchanged)</li>
+				<li>Case sensitive: yes</li>
+				<li>Uses randomness in encryption: no</li>
+			</ul>
+		</p>
+
+		<b class="textTitle">Unencrypted message goes here:</b>
+		<textarea id="keyboardUnencrypted" oninput="substitute('keyboardUnencrypted','keyboardEncrypted', qwerty, wertyu);">This is an example message.</textarea>
+		<b class="textTitle">Encrypted message goes here:</b>
+		<textarea id="keyboardEncrypted" oninput="substitute('keyboardEncrypted','keyboardUnencrypted', wertyu, qwerty);">Yjod od sm rcs,[;r ,rddshr/</textarea>
+		<br/><br/>
+
+	<h2>ROT13</h2>
+		<p>
+			<b>How it works:</b>
+			ROT13 is a Caesar cipher that replaces each letter with the 13th letter after it in the alphabet. "A" becomes "N", b" becomes "o", and so forth. Note that ROT13 is its own inverse.
+		</p>
+		<p>
+			<b>Stats:</b>
+			<ul>
+				<li>Type: Caesar cipher</li>
+				<li>Accepted characters: all (non-letters remain unchanged)</li>
+				<li>Case sensitive: yes</li>
+				<li>Uses randomness in encryption: no</li>
+			</ul>
+		</p>
+
+		<b class="textTitle">Unencrypted message goes here:</b>
+		<textarea id="rot13Unencrypted" oninput="substitute('rot13Unencrypted','rot13Encrypted', alphabet, rot13bet);">This is an example message.</textarea>
+		<b class="textTitle">Encrypted message goes here:</b>
+		<textarea id="rot13Encrypted" oninput="substitute('rot13Encrypted','rot13Unencrypted', alphabet, rot13bet);">Guvf vf na rknzcyr zrffntr.</textarea>
+		<br/><br/>
+
+		more to come soon!
 	</div>
 
 </body>

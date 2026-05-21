@@ -1,3 +1,5 @@
+// Code for Pi Cipher
+
 function mod(n, m) {return ((n % m) + m) % m}; //apparently js % can return negative numbers... This fixes the issue.
 
 const lower_let = 'abcdefghijklmnopqrstuvwxyz'.split("");
@@ -11,31 +13,52 @@ function pi_code (inputElmnt, outputElmnt) {
 
     let output = '';
 
-        let char;
-        let PiI = 0;
-        let pi_digit;
+    let PiI = 0;
+    let pi_digit;
 
-        for (let i = 0; i < message.length; i++) {
+    for (let char of message) {
 
-            char = message[i];
-            pi_digit = parseInt(Pi[PiI]) * (inputElmnt==='piUnencrypted' ? 1: -1); //positive if inputElmnt==='piUnencrypted', else negative
+        pi_digit = parseInt(Pi[PiI]) * (inputElmnt==='piUnencrypted' ? 1: -1);
 
-            if (lower_let.includes(char)) {
-                output += lower_let[mod(lower_let.indexOf(char)+pi_digit, 26)];
-                PiI++;
-            }
-            else if (upper_let.includes(char)) {
-                output += upper_let[mod(upper_let.indexOf(char)+pi_digit, 26)];
-                PiI++;
-            }
-            else {
-                output += char;
-            };
+        if (lower_let.includes(char)) {
+            output += lower_let[mod(lower_let.indexOf(char)+pi_digit, 26)];
+            PiI++;
+        }
+        else if (upper_let.includes(char)) {
+            output += upper_let[mod(upper_let.indexOf(char)+pi_digit, 26)];
+            PiI++;
+        }
+        else {
+            output += char;
+        };
 
-            if (PiI >= Pi.length) {
-                output = `{ERROR! Message is too long. Limit is ${Pi.length} letters.}`;
-                break;
-            };
+        if (PiI >= Pi.length) {
+            output = `{ERROR! Message is too long. Limit is ${Pi.length} letters.}`;
+            break;
+        };
+    };
+    document.getElementById(outputElmnt).value = output;
+};
+
+// Code for substitution ciphers (keyboard shift and rot13)
+
+const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?`.split("");
+const wertyu = `1234567890-=\`wertyuiop[]\\qsdfghjkl;'axcvbnm,./z!@#$%^&*()_+~WERTYUIOP{}|QSDFGHJKL:"AXCVBNM<>?Z`.split("");
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyz' + 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
+const rot13bet = 'nopqrstuvwxyzabcdefghijklm' + 'nopqrstuvwxyzabcdefghijklm'.toUpperCase();
+
+function substitute (inputElmnt, outputElmnt, inputChars, outputChars) {
+    let message = document.getElementById(inputElmnt).value;
+    let output = '';
+
+    for (let char of message) {
+
+        if (inputChars.includes(char)) {
+            output += outputChars[inputChars.indexOf(char)];
+        } else {
+            output += char;
+        };
     };
     document.getElementById(outputElmnt).value = output;
 };
