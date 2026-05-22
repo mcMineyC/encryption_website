@@ -102,6 +102,31 @@
 		<textarea id="rot13Encrypted" oninput="substitute('rot13Encrypted','rot13Unencrypted', alphabet, rot13bet);">Guvf vf na rknzcyr zrffntr.</textarea>
 		<br/><br/>
 
+	<h2>Vigenère Cipher</h2>
+		<p>
+			<b>How it works:</b>
+			Similar to the Pi cipher, the keyword is used to shift each letter in the message. Using the keyword "secret," the first letter of the message is shifted 18 places, since it is the 18th letter of the alphabet (counting "a" as 0).
+			If our message is "Hello world," "H" becomes "Z". The next letter in our message, "e", gets shifted 4 places by the next keyword letter of "e" to become "i". The process repeats. When the keyword runs out of letters, it loops back.
+		</p>
+		<p>
+			<b>Stats:</b>
+			<ul>
+				<li>Type: Vigenère cipher</li>
+				<li>Accepted characters: all (non-letters remain unchanged)</li>
+				<li>Case sensitive: yes (the keyword is not case sensitive)</li>
+				<li>Uses randomness in encryption: no</li>
+			</ul>
+		</p>
+
+		<b class="textTitle">Unencrypted message goes here:</b>
+		<textarea id="vigenereUnencrypted" oninput="vigenere('vigenereUnencrypted','vigenereEncrypted');">This is an example message.</textarea>
+		<b class="textTitle">Encrypted message goes here:</b>
+		<textarea id="vigenereEncrypted" oninput="vigenere('vigenereEncrypted','vigenereUnencrypted');">Llkj ml sr goefhpg dilkeiv.</textarea>
+		<b class="textTitle">Cipher keyword goes here:</b>
+		<textarea id="vigenereKey">secret</textarea>
+		<br/>Usage note: The translation will not automatically update when you edit the keyword text field.
+		<br/><br/>
+
 		more to come soon!
 	</div>
 
