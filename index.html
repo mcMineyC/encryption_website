@@ -123,7 +123,7 @@
 		<b class="textTitle">Encrypted message goes here:</b>
 		<textarea id="vigenereEncrypted" oninput="vigenere('vigenereEncrypted','vigenereUnencrypted');">Llkj ml sr goefhpg dilkeiv.</textarea>
 		<b class="textTitle">Cipher keyword goes here:</b>
-		<textarea id="vigenereKey">secret</textarea>
+		<textarea id="vigenereKey" oninput="vigenere('vigenereUnencrypted','vigenereEncrypted');">secret</textarea>
 		<br/>Usage note: The translation will not automatically update when you edit the keyword text field.
 		<br/><br/>
 
