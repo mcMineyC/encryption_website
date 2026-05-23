@@ -3,41 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Message Encryptor</title>
+	<title>Cipher Translator</title>
 	<script src="index.js"></script>
-	<style>
-		body {
-			font-family: sans-serif;
-			padding-left: calc(5vw + 20px);
-			padding-right: calc(5vw + 20px);
-		}
-
-		h1 {
-			text-align: center;
-		}
-
-		h3 {
-			margin-bottom: 2px;
-		}
-
-		textarea {
-			font-family: monospace;
-			display: block;
-			width: 100%;
-			resize: vertical;
-		}
-
-		.textTitle {
-			display: block;
-			margin-top: 20px;
-		}
-
-	</style>
+	<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
 	<div>
 		<h1>Message Encryption website</h1>
+
+		Important note: This webpage is currently under maintenance/development.
 
 		<h2>Pi Cipher</h2>
 		<p>
@@ -129,6 +104,17 @@
 
 		more to come soon!
 	</div>
+	The stuff below is under maintenance/development:
+	<div class="container">
+			<div class="mainbox">
+				<div class="fieldTitle">Encrypted</div>
+				<textarea id="unencrypted" class="mainfield">input</textarea>
+			</div>
+			<div class="mainbox">
+				<div class="fieldTitle">Unencrypted</div>
+				<textarea id="encrypted" class="mainfield">output</textarea>
+			</div>
+		</div>
 
 </body>
 </html>
