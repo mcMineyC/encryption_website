@@ -18,15 +18,14 @@ body {
     background-color: brown;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
 }
 
 .mainfield {
-    flex: 1;
     box-sizing: border-box;
     border-radius: 20px;
     padding: 12px;
-    field-sizing: content;
+    min-height: 180px;
+    overflow: hidden;
     font-size: inherit;
 }
 

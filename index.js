@@ -1,3 +1,26 @@
+// New code for Google Translate version
+
+const encElmnt = document.getElementById("encrypted");
+const unencElmnt = document.getElementById("unencrypted");
+
+// Adjust height of textarea to fit text
+encElmnt.addEventListener('input', () => {
+    // Reset height so it can shrink if text is deleted
+    encElmnt.style.height = 'auto';
+    // Set new height based on the scrollable content area
+    let newHeight = encElmnt.scrollHeight + 'px'; // TODO fix potential issue. Perhaps unencElmnt's height is greater than encElmt's?
+    encElmnt.style.height = newHeight
+    unencElmnt.style.height = newHeight
+});
+unencElmnt.addEventListener('input', () => {
+    // Reset height so it can shrink if text is deleted
+    unencElmnt.style.height = 'auto';
+    // Set new height based on the scrollable content area
+    let newHeight = unencElmnt.scrollHeight + 'px';
+    encElmnt.style.height = newHeight
+    unencElmnt.style.height = newHeight
+});
+
 // Code for Pi Cipher
 
 function mod(n, m) {return ((n % m) + m) % m}; //apparently js % can return negative numbers... This fixes the issue.
