@@ -130,11 +130,22 @@ function resize () {
     };
 };
 
-// Adjust height of textarea to fit text
+function editFlash(edEl) {
+    edEl.classList.remove("flash-red"); // remove old animation
+    void edEl.offsetWidth;              // force reflow
+    edEl.classList.add("flash-red");    // restart animation
+}
+
 encElmnt.addEventListener('input', () => {
+    // Flash other box red
+    editFlash(unencElmnt)
+    // Adjust height of textarea to fit text
     resize()
 });
 unencElmnt.addEventListener('input', () => {
+    // Flash other box red
+    editFlash(encElmnt)
+    // Adjust height of textarea to fit text
     resize()
 });
 
