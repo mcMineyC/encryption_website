@@ -11,37 +11,38 @@
 </head>
 
 <body>
-	<div>
-		<label class="switch">
+<header>
+	<label style="position: relative; display: inline-flex; align-items: center;">
+		<select title="choose a translation mode">
+			<option>Keyboard Shift</option>
+			<option selected>Pi Cipher</option>
+			<option>ROT13</option>
+			<option>Vigenère Cipher</option>
+		</select>
+		<!-- Make svg bigger? -->
+		<svg style="position: absolute; right: 14px; width: 14px; height: 10px; pointer-events: none;" class="strokeSVG" viewBox="0 0 14 10">
+			<path d="M1 1l6 6 6-6" stroke-width="2" fill="none" stroke-linecap="round"/>
+		</svg>
+	</label>
+	<label class="switch" title="dark-mode toggle">
 		<input type="checkbox" role="switch">
 		<span class="slider"></span>
-		</label>
-	</div>
-	<h1>Message Encryption website</h1>
-	Important note: This webpage is currently under maintenance/development.
-
-	<div>
-		<label for="cars">Choose a car:</label>
-		<select id="cars" name="cars">
-		<option value="volvo">Volvo</option>
-		<option value="saab">Saab</option>
-		<option value="mercedes">Mercedes</option>
-		</select>
-	</div>
-
+	</label>
+</header>
+<main>
 	<div id="container">
 		<div class="mainbox">
 			<div class="boxHeader">
 				<div class="fieldTitle">Message</div>
 				<div style="display: flex; gap: 4px;">
-					<button class="circleButton">
-						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none">
-							<path d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<button class="circleButton" title="copy text">
+						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" class="strokeSVG">
+							<path d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</button>
-					<button class="circleButton">
-						<svg width="30px" height="30px" viewBox="-3.5 0 19 19" fill="#000000">
+					<button class="circleButton" title="clear text">
+						<svg width="30px" height="30px" viewBox="-3.5 0 19 19">
 							<path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"/>
 						</svg>
 					</button>
@@ -53,14 +54,14 @@
 			<div class="boxHeader">
 				<div class="fieldTitle">Code</div>
 				<div style="display: flex; gap: 4px;">
-					<button class="circleButton">
-						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none">
-							<path d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<button class="circleButton" title="copy text">
+						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" class="strokeSVG">
+							<path d="M8 4V16C8 17.1046 8.89543 18 10 18L18 18C19.1046 18 20 17.1046 20 16V7.24162C20 6.7034 19.7831 6.18789 19.3982 5.81161L16.0829 2.56999C15.7092 2.2046 15.2074 2 14.6847 2H10C8.89543 2 8 2.89543 8 4Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</button>
-					<button class="circleButton">
-						<svg width="30px" height="30px" viewBox="-3.5 0 19 19" fill="#000000">
+					<button class="circleButton" title="clear text">
+						<svg width="30px" height="30px" viewBox="-3.5 0 19 19">
 							<path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"/>
 						</svg>
 					</button>
@@ -69,6 +70,7 @@
 			<textarea id="encrypted" class="mainfield">output</textarea>
 		</div>
 	</div>
+</main>
 
 <script src="index.js"></script>
 </body>
