@@ -22,7 +22,9 @@
     --button-box-hover: hsl(225, 35%, 85%);
     --button-box-click: hsl(225, 50%, 70%);
     --box-red: hsl(350, 30%, 83%);
-    --header-color: hsl(225, 80%, 54%);
+    --header-color: hsl(225, 75%, 54%); /* I can't decide the exact hue! */
+    --alert-background: rgb(50 50 50);
+    --alert-font-color: rgb(201, 201, 201);
 }
 
 body {
@@ -50,7 +52,9 @@ header select {
     background-color: var(--button-box);
     border: none;
     padding: 11px 44px 13px 11px;
-    min-width: 210px;
+    min-width: 200px;
+    max-width: 230px; /* Calculated so as to provide a 10px gap with the darkmode switch. */
+    height: 50px;
     outline: none;
     cursor: pointer;
     appearance: none;
@@ -228,4 +232,33 @@ input:checked + .slider {
 /* Knob translation when checked */
 input:checked + .slider::before {
     transform: translateX(26px);
+}
+
+@keyframes popUp {
+    0% {transform: translateY(0px); visibility: visible;}
+    5% {transform: translateY(44px);}
+    95% {transform: translateY(44px);}
+    100% {transform: translateY(0px); visibility: hidden;}
+}
+
+#copyAlert {
+    display: inline-block;
+    font-size: inherit;
+    visibility: hidden;
+    z-index: 1;
+    position: fixed;
+    left: 10px;
+    bottom: -32px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--button-box);
+    background-color: var(--alert-background);
+    /* animation-timing-function: ease-in-out; */
+}
+
+.pop-up {
+    animation: popUp 3s;
 }
