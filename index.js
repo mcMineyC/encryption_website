@@ -25,6 +25,15 @@ const translate_out = {
     'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1)
 };
 
+const urlModeNames = {
+    'Pi Cipher': 'pi',
+    'ROT13': 'rot13',
+    'Keyboard Shift': 'keyboard',
+    'Vigenère Cipher': 'vigenere'
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const currentUrl = new URL(window.location.href);
 var mode = modeSelect.value;
 var unencUsedLast = true;
 
@@ -166,6 +175,19 @@ async function copyText(text) {
     }
 };
 
+// Execute onload:
+
+// Switch mode if necessary
+if (urlParams.has('mode')) {
+    modeSelect.value = Object.keys(urlModeNames).find(k => urlModeNames[k] === urlParams.get('mode'));
+    // urlModeNames[urlParams.get('mode')];
+    mode = modeSelect.value;
+    //translate
+    translate_in[mode]();
+    // Adjust height of textarea to fit text
+    resize();
+};
+
 // Event listeners
 
 unencElmnt.addEventListener('input', () => {
@@ -198,6 +220,7 @@ modeSelect.addEventListener('change', () => {
         translate_out[mode]();
     };
     resize();
+    // update query string
+    currentUrl.searchParams.set('mode', urlModeNames[mode]);
+    window.history.replaceState({}, '', currentUrl);
 });
-
-// TODO code that changes mode based on querystring when loaded
