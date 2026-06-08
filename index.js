@@ -5,6 +5,7 @@ const encElmnt = document.getElementById("encrypted");
 const unencElmnt = document.getElementById("unencrypted");
 const textDaddy = document.getElementById("container");
 const copyFlag = document.getElementById("copyAlert");
+const darkToggle = document.getElementById("darkSwitch");
 const lower_let = 'abcdefghijklmnopqrstuvwxyz';
 const upper_let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?`;
@@ -93,6 +94,9 @@ function substitute (inputElmnt, outputElmnt, inputChars, outputChars) {
 // Code for Vigenere cipher
 
 function vigenere (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for encryption, -1 for decryption.
+
+    outputElmnt.value = 'Whoops, sorry. This cipher doesn\'t work yet.'
+    return
 
     let message = inputElmnt.value;
     let output = '';
@@ -223,4 +227,8 @@ modeSelect.addEventListener('change', () => {
     // update query string
     currentUrl.searchParams.set('mode', urlModeNames[mode]);
     window.history.replaceState({}, '', currentUrl);
+});
+
+darkToggle.addEventListener('change', (event) => {
+    alert("Whoops! Sorry, but dark mode doesn't work yet.");
 });

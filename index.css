@@ -23,8 +23,8 @@
     --button-box-click: hsl(225, 50%, 70%);
     --box-red: hsl(350, 30%, 83%);
     --header-color: hsl(225, 75%, 54%); /* I can't decide the exact hue! */
-    --alert-background: rgb(50 50 50);
-    --alert-font-color: rgb(201, 201, 201);
+    --alert-background: rgb(67, 67, 67);
+    --alert-font-color: rgb(230, 230, 230);
 }
 
 body {
@@ -236,8 +236,8 @@ input:checked + .slider::before {
 
 @keyframes popUp {
     0% {transform: translateY(0px); visibility: visible;}
-    5% {transform: translateY(44px);}
-    95% {transform: translateY(44px);}
+    5% {transform: translateY(-44px);}
+    95% {transform: translateY(-44px);}
     100% {transform: translateY(0px); visibility: hidden;}
 }
 
@@ -260,5 +260,5 @@ input:checked + .slider::before {
 }
 
 .pop-up {
-    animation: popUp 3s;
+    animation: popUp 2s;
 }
