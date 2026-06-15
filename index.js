@@ -15,12 +15,14 @@ const rot13bet = 'nopqrstuvwxyzabcdefghijklm' + 'nopqrstuvwxyzabcdefghijklm'.toU
 
 const translate_in = {
     'Pi Cipher': () => pi_code(unencElmnt, encElmnt, 1),
+    'Reverse':  () => myReverse(unencElmnt, encElmnt),
     'ROT13': () => substitute(unencElmnt, encElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(unencElmnt, encElmnt, qwerty, wertyu),
     'Vigenère Cipher': () => vigenere(unencElmnt, encElmnt, 1)
 };
 const translate_out = {
     'Pi Cipher': () => pi_code(encElmnt, unencElmnt, -1),
+    'Reverse':  () => myReverse(encElmnt, unencElmnt),
     'ROT13': () => substitute(encElmnt, unencElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(encElmnt, unencElmnt, wertyu, qwerty),
     'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1)
@@ -28,6 +30,7 @@ const translate_out = {
 
 const urlModeNames = {
     'Pi Cipher': 'pi',
+    'Reverse': 'reverse',
     'ROT13': 'rot13',
     'Keyboard Shift': 'keyboard',
     'Vigenère Cipher': 'vigenere'
@@ -135,6 +138,10 @@ function vigenere (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for enc
     };
 
     outputElmnt.value = output;
+};
+
+function myReverse(inputElmnt, outputElmnt) {
+    outputElmnt.value = [...inputElmnt.value].reverse().join('')
 };
 
 // New code for Google Translate version
