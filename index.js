@@ -6,6 +6,7 @@ const unencElmnt = document.getElementById("unencrypted");
 const textDaddy = document.getElementById("container");
 const copyFlag = document.getElementById("copyAlert");
 const darkToggle = document.getElementById("darkSwitch");
+const extraBox = document.getElementById("bonusKeyBox");
 const keyBox = document.getElementById("key");
 const lower_let = 'abcdefghijklmnopqrstuvwxyz';
 const upper_let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -99,20 +100,20 @@ function substitute (inputElmnt, outputElmnt, inputChars, outputChars) {
 
 function vigenere (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for encryption, -1 for decryption.
 
-    outputElmnt.value = 'Whoops, sorry. This cipher doesn\'t work yet.'
-    return
-
     let message = inputElmnt.value;
     let output = '';
 
-    let key = "";
+    let key = '';
     // only use letters in key
-    for (let char of document.getElementById("vigenereKey").value) {
+    for (let char of keyBox.value) {
         if (alphabet.includes(char)) {
             key += char;
         };
     };
-    key = key.toLowerCase()
+    key = key.toLowerCase();
+    if (key === '') {
+        key = 'a';
+    };
 
     let keyI = 0;
     let key_digit;
@@ -195,6 +196,27 @@ async function copyText(text) {
     }
 };
 
+function showhideBonuses () {
+    // Show necessary bonus info
+    if (mode === 'Vigenère Cipher') {
+        extraBox.style.display = 'block';
+    } else {
+        extraBox.style.display = 'none';
+    };
+};
+
+function autoTranslate () {
+    // Translate from last edited box
+    if (unencUsedLast) {
+        editFlash(encElmnt);
+        translate_in[mode]();
+    } else {
+        editFlash(unencElmnt);
+        translate_out[mode]();
+    };
+    resize();
+};
+
 // Execute onload:
 
 // Switch mode if necessary
@@ -206,6 +228,7 @@ if (urlParams.has('mode')) {
     translate_in[mode]();
     // Adjust height of textarea to fit text
     resize();
+    showhideBonuses()
 };
 
 // Event listeners
@@ -231,18 +254,15 @@ encElmnt.addEventListener('input', () => {
 
 modeSelect.addEventListener('change', () => {
     mode = modeSelect.value;
-    // Translate from last edited box
-    if (unencUsedLast) {
-        editFlash(encElmnt);
-        translate_in[mode]();
-    } else {
-        editFlash(unencElmnt);
-        translate_out[mode]();
-    };
-    resize();
+    showhideBonuses()
+    autoTranslate()
     // update query string
     currentUrl.searchParams.set('mode', urlModeNames[mode]);
     window.history.replaceState({}, '', currentUrl);
+});
+
+keyBox.addEventListener('input', () => {
+    autoTranslate()    
 });
 
 darkToggle.addEventListener('change', (event) => {
