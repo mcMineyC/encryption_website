@@ -6,6 +6,7 @@ const unencElmnt = document.getElementById("unencrypted");
 const textDaddy = document.getElementById("container");
 const copyFlag = document.getElementById("copyAlert");
 const darkToggle = document.getElementById("darkSwitch");
+const keyBox = document.getElementById("key");
 const lower_let = 'abcdefghijklmnopqrstuvwxyz';
 const upper_let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?`;
@@ -159,6 +160,14 @@ function resize () {
         encElmnt.style.height = encElmnt.scrollHeight + 'px';
         unencElmnt.style.height = unencElmnt.scrollHeight + 'px';
     };
+};
+
+function key_resize () {
+    keyBox.style.setProperty("white-space", "pre");
+    keyBox.style.width = keyBox.scrollWidth + "px";
+    keyBox.style.setProperty("white-space", "normal");
+
+    keyBox.style.height = keyBox.scrollHeight + "px";
 };
 
 function editFlash(edEl) {

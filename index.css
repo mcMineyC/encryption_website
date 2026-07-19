@@ -90,6 +90,7 @@ main {
     column-gap: 12px;
     row-gap: 20px;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .mainbox {
@@ -106,15 +107,15 @@ main {
     padding: 12px;
     min-height: 180px;
     overflow: hidden;
-    font-size: 22px;
-    background-color: var(--button-box);
-    transition: background-color 0.3s ease; /* ensure smooth transition both on hover and on hover-off */
 }
 
 textarea {
     font-family: monospace;
+    font-size: 22px;
     resize: none;
     color: inherit;
+    background-color: var(--button-box);
+    transition: background-color 0.3s ease; /* ensure smooth transition both on hover and on hover-off */
 }
 
 /* Desktop layout */
@@ -128,16 +129,15 @@ textarea {
         transition: background-color 0.3s ease;
         background-color: var(--button-box-hover);
     }
-    .mainfield:hover {
+    textarea:hover {
         background-color: var(--button-box-hover);
     }
-
     header select:hover {
         background-color: var(--button-box-hover);
     }
 }
 
-.mainfield:focus {
+textarea:focus {
     background-color: var(--button-box);
 }
 
@@ -265,4 +265,16 @@ input:checked + .slider::before {
 
 #info {
     margin-top: 30px;
+}
+
+#key {
+    display: block;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: none;
+    padding: 12px;
+    min-width: 200px;
+    max-width: 100%;
+    overflow: hidden;
+    height: 55px; /* = 31 + 2*12, word height plus the padding. */
 }
