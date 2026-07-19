@@ -18,6 +18,7 @@
 		<select id="modeElement" title="choose a translation mode">
 			<option>Keyboard Shift</option>
 			<option selected>Pi Cipher</option>
+			<option>Reverse</option>
 			<option>ROT13</option>
 			<option>Vigenère Cipher</option>
 		</select>
@@ -42,7 +43,7 @@
 							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</button>
-					<button class="circleButton" onclick="clearBoxes();" title="clear text">
+					<button class="circleButton" onclick="clearBoxes();resize();" title="clear text">
 						<svg width="30px" height="30px" viewBox="-3.5 0 19 19" style="fill: var(--font-color);">
 							<path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"/>
 						</svg>
@@ -61,7 +62,7 @@
 							<path d="M16 18V20C16 21.1046 15.1046 22 14 22H6C4.89543 22 4 21.1046 4 20V9C4 7.89543 4.89543 7 6 7H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</button>
-					<button class="circleButton" onclick="clearBoxes();" title="clear text">
+					<button class="circleButton" onclick="clearBoxes();resize();" title="clear text">
 						<svg width="30px" height="30px" viewBox="-3.5 0 19 19" style="fill: var(--font-color);">
 							<path d="M11.383 13.644A1.03 1.03 0 0 1 9.928 15.1L6 11.172 2.072 15.1a1.03 1.03 0 1 1-1.455-1.456l3.928-3.928L.617 5.79a1.03 1.03 0 1 1 1.455-1.456L6 8.261l3.928-3.928a1.03 1.03 0 0 1 1.455 1.456L7.455 9.716z"/>
 						</svg>
@@ -71,7 +72,7 @@
 			<textarea id="encrypted" class="mainfield">Wimt nb ct jafuysn pgvaemg.</textarea>
 		</div>
 	</div>
-	<div style="margin-top: 30px;">
+	<div id="info">
 		More updates coming soon!
 	</div>
 </main>

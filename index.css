@@ -262,3 +262,7 @@ input:checked + .slider::before {
 .pop-up {
     animation: popUp 2s;
 }
+
+#info {
+    margin-top: 30px;
+}
