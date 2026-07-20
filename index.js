@@ -14,20 +14,24 @@ const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QW
 const wertyu = `1234567890-=\`wertyuiop[]\\qsdfghjkl;'axcvbnm,./z!@#$%^&*()_+~WERTYUIOP{}|QSDFGHJKL:"AXCVBNM<>?Z`;
 const alphabet = 'abcdefghijklmnopqrstuvwxyz' + 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
 const rot13bet = 'nopqrstuvwxyzabcdefghijklm' + 'nopqrstuvwxyzabcdefghijklm'.toUpperCase();
+const decimals = '0123456789'
+const hexadecimals = '0123456789abcdef'
 
 const translate_in = {
     'Pi Cipher': () => pi_code(unencElmnt, encElmnt, 1),
     'Reverse':  () => myReverse(unencElmnt, encElmnt),
     'ROT13': () => substitute(unencElmnt, encElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(unencElmnt, encElmnt, qwerty, wertyu),
-    'Vigenère Cipher': () => vigenere(unencElmnt, encElmnt, 1)
+    'Vigenère Cipher': () => vigenere(unencElmnt, encElmnt, 1),
+    'Base Convert': () => convert_base(unencElmnt, encElmnt, decimals, hexadecimals)
 };
 const translate_out = {
     'Pi Cipher': () => pi_code(encElmnt, unencElmnt, -1),
     'Reverse':  () => myReverse(encElmnt, unencElmnt),
     'ROT13': () => substitute(encElmnt, unencElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(encElmnt, unencElmnt, wertyu, qwerty),
-    'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1)
+    'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1),
+    'Base Convert': () => convert_base(encElmnt, unencElmnt, hexadecimals, decimals)
 };
 
 const urlModeNames = {
@@ -35,7 +39,8 @@ const urlModeNames = {
     'Reverse': 'reverse',
     'ROT13': 'rot13',
     'Keyboard Shift': 'keyboard',
-    'Vigenère Cipher': 'vigenere'
+    'Vigenère Cipher': 'vigenere',
+    'Base Convert': 'baseconv'
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -144,6 +149,36 @@ function vigenere (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for enc
 
 function myReverse(inputElmnt, outputElmnt) {
     outputElmnt.value = [...inputElmnt.value].reverse().join('')
+};
+
+// Code for base converter
+
+function convert_base (inputElmnt, outputElmnt, inputBase, outputBase) {
+    let message = inputElmnt.value;
+
+    // Case insensitivity for hexadecimal:
+    if (inputBase === hexadecimals) {message = message.toLowerCase()};
+
+    // Convert to decimal value
+    let dec = 0;
+    let power = message.length;
+    for (let i = 0; i < message.length; i++) {
+        power--;
+        dec += inputBase.indexOf(message[i]) * inputBase.length ** power;
+    };
+
+    if (dec === 0) { // Return 0 if value is zero/null.
+        outputElmnt.value = '0';
+    } else {
+
+        // Convert to desired base
+        let output = '';
+        while (dec > 0) {
+            output = outputBase[mod(dec, outputBase.length)] + output
+            dec = Math.floor(dec / outputBase.length)
+        };
+        outputElmnt.value = output;
+    };
 };
 
 // New code for Google Translate version

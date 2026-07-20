@@ -16,6 +16,7 @@
 <header>
 	<label style="position: relative; display: inline-flex; align-items: center;">
 		<select id="modeElement" title="choose a translation mode">
+			<option>Base Convert</option>
 			<option>Keyboard Shift</option>
 			<option selected>Pi Cipher</option>
 			<option>Reverse</option>
@@ -31,11 +32,23 @@
 		<span class="slider"></span>
 	</label>
 </header>
+
 <main>
 	<div id="container">
 		<div class="mainbox">
 			<div class="boxHeader">
-				<div class="fieldTitle">Message</div>
+				<div class="fieldTitle" style="display: none;">Message</div>
+				<div style="display: inline-block;">
+					<label  class="miniSelector" style="position: relative; display: inline-flex; align-items: center;">
+							<select id="unencSelector" title="select here">
+								<option selected>decimal</option>
+								<option>hexadecimal</option>
+							</select>
+							<svg viewBox="0 0 14 10">
+								<path d="M1 1l6 6 6-6" stroke-width="2" fill="none" stroke-linecap="round"/>
+							</svg>
+						</label>
+				</div>
 				<div style="display: flex; gap: 4px;">
 					<button class="circleButton" onclick="copyText(unencElmnt.value);" title="copy text">
 						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" style="stroke: var(--font-color);">

@@ -79,6 +79,42 @@ header svg { /* This is the arrow in the select element */
     stroke: var(--font-color);
 }
 
+.miniSelector select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    border-radius: 999px;
+    background-color: var(--button-box);
+    border: none;
+    padding: 11px 44px 13px 14px;
+    min-width: 190px;
+    max-width: 230px;
+    height: 45px;
+    overflow: visible;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: background-color 0.3s ease;
+}
+
+.miniSelector option {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--button-box);
+}
+
+.miniSelector svg { /* This is the arrow in the select element */
+    position: absolute;
+    right: 15px;
+    width: 18px;
+    height: auto;
+    pointer-events: none;
+    stroke: var(--font-color);
+}
+
 main {
     padding-left: 5vw;
     padding-right: 5vw;
@@ -133,6 +169,9 @@ textarea {
         background-color: var(--button-box-hover);
     }
     header select:hover {
+        background-color: var(--button-box-hover);
+    }
+    .miniSelector select:hover {
         background-color: var(--button-box-hover);
     }
 }
