@@ -79,6 +79,13 @@ header svg { /* This is the arrow in the select element */
     stroke: var(--font-color);
 }
 
+.miniSelector label {
+    height: 45px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
 .miniSelector select {
     font-family: inherit;
     font-size: inherit;
@@ -89,7 +96,7 @@ header svg { /* This is the arrow in the select element */
     padding: 11px 44px 13px 14px;
     min-width: 190px;
     max-width: 230px;
-    height: 45px;
+    max-height: 45px;
     overflow: visible;
     outline: none;
     cursor: pointer;

@@ -37,17 +37,19 @@
 	<div id="container">
 		<div class="mainbox">
 			<div class="boxHeader">
-				<div class="fieldTitle" style="display: none;">Message</div>
-				<div style="display: inline-block;">
-					<label  class="miniSelector" style="position: relative; display: inline-flex; align-items: center;">
-							<select id="unencSelector" title="select here">
-								<option selected>decimal</option>
-								<option>hexadecimal</option>
-							</select>
-							<svg viewBox="0 0 14 10">
-								<path d="M1 1l6 6 6-6" stroke-width="2" fill="none" stroke-linecap="round"/>
-							</svg>
-						</label>
+				<div class="fieldTitle">Message</div>
+				<div class="miniSelector" style="display: none;">
+					<label>
+						<select id="unencSelector" title="select here">
+							<option>binary</option>
+							<option selected>decimal</option>
+							<option>hexadecimal</option>
+							<option>base64</option>
+						</select>
+						<svg viewBox="0 0 14 10">
+							<path d="M1 1l6 6 6-6" stroke-width="2" fill="none" stroke-linecap="round"/>
+						</svg>
+					</label>
 				</div>
 				<div style="display: flex; gap: 4px;">
 					<button class="circleButton" onclick="copyText(unencElmnt.value);" title="copy text">
@@ -68,6 +70,19 @@
 		<div class="mainbox">
 			<div class="boxHeader">
 				<div class="fieldTitle">Code</div>
+				<div class="miniSelector" style="display: none;">
+					<label>
+						<select id="encSelector" title="select here">
+							<option>binary</option>
+							<option>decimal</option>
+							<option selected>hexadecimal</option>
+							<option>base64</option>
+						</select>
+						<svg viewBox="0 0 14 10">
+							<path d="M1 1l6 6 6-6" stroke-width="2" fill="none" stroke-linecap="round"/>
+						</svg>
+					</label>
+				</div>
 				<div style="display: flex; gap: 4px;">
 					<button class="circleButton" onclick="copyText(encElmnt.value);" title="copy text">
 						<svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" style="stroke: var(--font-color);">
@@ -86,7 +101,7 @@
 		</div>
 	</div>
 	<div id="bonusKeyBox" style="display: none;">
-		<div class="fieldTitle" style="height:45px;display:block;">Key</div>
+		<div style="height:45px; font-weight:bold; font-size:25px;">Key</div>
 		<textarea id="key" oninput="key_resize()">keyword</textarea>
 	</div>
 	<div id="info">

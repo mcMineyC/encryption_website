@@ -8,6 +8,8 @@ const copyFlag = document.getElementById("copyAlert");
 const darkToggle = document.getElementById("darkSwitch");
 const extraBox = document.getElementById("bonusKeyBox");
 const keyBox = document.getElementById("key");
+const boxTitles = document.querySelectorAll('.fieldTitle');
+const boxSelectors = document.querySelectorAll('.miniSelector');
 const lower_let = 'abcdefghijklmnopqrstuvwxyz';
 const upper_let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?`;
@@ -233,10 +235,25 @@ async function copyText(text) {
 
 function showhideBonuses () {
     // Show necessary bonus info
-    if (mode === 'Vigenère Cipher') {
+    if (mode == 'Vigenère Cipher') {
         extraBox.style.display = 'block';
     } else {
         extraBox.style.display = 'none';
+    };
+    if (mode == 'Base Convert') {
+        boxTitles.forEach(item => {
+            item.style.display = 'none';
+        });
+        boxSelectors.forEach(item => {
+            item.style.display = 'inline-block';
+        });
+    } else {
+        boxTitles.forEach(item => {
+            item.style.display = 'inline-block';
+        });
+        boxSelectors.forEach(item => {
+            item.style.display = 'none';
+        });
     };
 };
 
