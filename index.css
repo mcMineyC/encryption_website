@@ -93,10 +93,10 @@ header svg { /* This is the arrow in the select element */
     border-radius: 999px;
     background-color: var(--button-box);
     border: none;
-    padding: 11px 44px 13px 14px;
+    padding-left: 14px;
     min-width: 190px;
     max-width: 230px;
-    max-height: 45px;
+    height: 45px;
     overflow: visible;
     outline: none;
     cursor: pointer;
@@ -118,6 +118,7 @@ header svg { /* This is the arrow in the select element */
     right: 15px;
     width: 18px;
     height: auto;
+    margin-top: 4px;
     pointer-events: none;
     stroke: var(--font-color);
 }
@@ -321,6 +322,7 @@ input:checked + .slider::before {
     padding: 12px;
     min-width: 200px;
     max-width: 100%;
+    width: 200px;
     overflow: hidden;
     height: 55px; /* = 31 + 2*12, word height plus the padding. */
 }

@@ -201,11 +201,18 @@ function resize () {
 };
 
 function key_resize () {
+    // Minimize box
+    keyBox.style.width = '200px'; // matches default CSS
+    keyBox.style.height = '55px'; // matches default CSS
+    // Adjust width
     keyBox.style.setProperty("white-space", "pre");
-    keyBox.style.width = keyBox.scrollWidth + "px";
-    keyBox.style.setProperty("white-space", "normal");
-
-    keyBox.style.height = keyBox.scrollHeight + "px";
+    keyBox.style.width = keyBox.scrollWidth  + "px";
+    // Adjust height
+    if (keyBox.offsetWidth >= extraBox.offsetWidth) { // If width is maxed out
+        keyBox.style.setProperty("white-space", "normal");
+        keyBox.style.height = keyBox.scrollHeight + "px";
+        console.log('adjusting height');
+    };
 };
 
 function editFlash(edEl) {
