@@ -31,7 +31,8 @@ const translate_in = {
     'ROT13': () => substitute(unencElmnt, encElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(unencElmnt, encElmnt, qwerty, wertyu),
     'Vigenère Cipher': () => vigenere(unencElmnt, encElmnt, 1),
-    'Base Convert': () => convert_base(unencElmnt, encElmnt, bases[unencBaseSel.value], bases[encBaseSel.value])
+    'Base Convert': () => convert_base_box(unencElmnt, encElmnt, bases[unencBaseSel.value], bases[encBaseSel.value]),
+    'Compressor': () => base_compress()
 };
 const translate_out = {
     'Pi Cipher': () => pi_code(encElmnt, unencElmnt, -1),
@@ -39,7 +40,8 @@ const translate_out = {
     'ROT13': () => substitute(encElmnt, unencElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(encElmnt, unencElmnt, wertyu, qwerty),
     'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1),
-    'Base Convert': () => convert_base(encElmnt, unencElmnt, bases[encBaseSel.value], bases[unencBaseSel.value])
+    'Base Convert': () => convert_base_box(encElmnt, unencElmnt, bases[encBaseSel.value], bases[unencBaseSel.value]),
+    'Compressor': () => base_decompress()
 };
 
 const urlModeNames = {
@@ -48,8 +50,9 @@ const urlModeNames = {
     'ROT13': 'rot13',
     'Keyboard Shift': 'keyboard',
     'Vigenère Cipher': 'vigenere',
-    'Base Convert': 'baseconv'
-}
+    'Base Convert': 'baseconv',
+    'Compressor': 'compress'
+};
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentUrl = new URL(window.location.href);
@@ -161,9 +164,7 @@ function myReverse(inputElmnt, outputElmnt) {
 
 // Code for base converter
 
-function convert_base (inputElmnt, outputElmnt, inputBase, outputBase) {
-    let message = inputElmnt.value;
-
+function convert_base (message, inputBase, outputBase) {
     // Case insensitivity for hexadecimal:
     if (inputBase === bases['hexadecimal']) {message = message.toLowerCase()};
 
@@ -176,7 +177,7 @@ function convert_base (inputElmnt, outputElmnt, inputBase, outputBase) {
     };
 
     if (dec === 0) { // Return 0 if value is zero/null.
-        outputElmnt.value = outputBase[0];
+        return outputBase[0];
     } else {
 
         // Convert to desired base
@@ -185,8 +186,65 @@ function convert_base (inputElmnt, outputElmnt, inputBase, outputBase) {
             output = outputBase[mod(dec, outputBase.length)] + output
             dec = Math.floor(dec / outputBase.length)
         };
-        outputElmnt.value = output;
+        return output;
     };
+};
+
+function convert_base_box (inputElmnt, outputElmnt, inputBaseBox, outputBaseBox) {
+    outputElmnt.value = convert_base(inputElmnt.value, inputBaseBox, outputBaseBox);
+};
+
+// Code for base compressor
+
+function base_compress () {
+    let message = unencElmnt.value;
+
+    // Assign numeric values to the chars of the message to create a new base.
+
+    let newBase = [];
+
+    let i = 1;
+    // Set next char value to 1, then 0.
+    while (message[i] === message[0] && message[i] !== undefined) {
+        i++;
+    };
+
+    newBase[1] = message[i];
+    i++;
+    while (newBase.includes(message[i]) && message[i] !== undefined) {
+        i++;
+    };
+    newBase[0] = message[i];
+
+    // Set remaining chars to 2, 3, 4, etc.
+    let b = 2
+    for (i = 1; i < message.length; i++) {
+        if (message[i] !== message[0] && !newBase.includes(message[i])) {
+            newBase[b] = message[i];
+            b++;
+        };
+    };
+    // Set the 1st char's value to be the greatest.
+    newBase[b] = message[0];
+    // Make base string.
+    let baseStr = newBase.join('');
+
+    // Get base64 value.
+    numba64 = convert_base(message.slice(1), baseStr, bases['base64']);
+
+    // Escape newline, tab, and curly-brace characters.
+    baseStr = baseStr
+        .replace(/\n/g, '\\n')
+        .replace(/\t/g, '\\t')
+        .replace(/{/g, '\\{')
+        .replace(/}/g, '\\}');
+    
+    // Generate output string.
+    encElmnt.value = '#{' + baseStr + '}' + numba64;
+};
+
+function base_decompress () {
+
 };
 
 // New code for Google Translate version
@@ -217,7 +275,6 @@ function key_resize () {
     if (keyBox.offsetWidth >= extraBox.offsetWidth) { // If width is maxed out
         keyBox.style.setProperty("white-space", "normal");
         keyBox.style.height = keyBox.scrollHeight + "px";
-        console.log('adjusting height');
     };
 };
 
