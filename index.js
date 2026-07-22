@@ -22,7 +22,8 @@ const bases = {
     'binary': '01',
     'decimal': '0123456789',
     'hexadecimal': '0123456789abcdef',
-    'base64': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    'base64': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+    'stripped qwerty': `\`1234567890-=qwertyuiop[]asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP|ASDFGHJKL:"ZXCVBNM<>?`
 };
 
 const translate_in = {
@@ -169,22 +170,24 @@ function convert_base (message, inputBase, outputBase) {
     if (inputBase === bases['hexadecimal']) {message = message.toLowerCase()};
 
     // Convert to decimal value
-    let dec = 0;
-    let power = message.length;
+    let dec = 0n;
+    let power = BigInt(message.length);
+    const inBN = BigInt(inputBase.length);
+    const outBN = BigInt(outputBase.length);
     for (let i = 0; i < message.length; i++) {
         power--;
-        dec += inputBase.indexOf(message[i]) * inputBase.length ** power;
+        dec += BigInt(inputBase.indexOf(message[i])) * inBN ** power;
     };
 
-    if (dec === 0) { // Return 0 if value is zero/null.
+    if (dec == 0) { // Return 0 if value is zero/null.
         return outputBase[0];
     } else {
 
         // Convert to desired base
         let output = '';
         while (dec > 0) {
-            output = outputBase[mod(dec, outputBase.length)] + output
-            dec = Math.floor(dec / outputBase.length)
+            output = outputBase[mod(dec, outBN)] + output;
+            dec = dec / outBN; // floored quotient?
         };
         return output;
     };
@@ -230,7 +233,7 @@ function base_compress () {
     let baseStr = newBase.join('');
 
     // Get base64 value.
-    numba64 = convert_base(message.slice(1), baseStr, bases['base64']);
+    numba64 = convert_base(message.slice(1), baseStr, bases['stripped qwerty']);
 
     // Escape newline, tab, and curly-brace characters.
     baseStr = baseStr
@@ -305,11 +308,13 @@ async function copyText(text) {
 
 function showhideBonuses () {
     // Show necessary bonus info
+
     if (mode == 'Vigenère Cipher') {
         extraBox.style.display = 'block';
     } else {
         extraBox.style.display = 'none';
     };
+
     if (mode == 'Base Convert') {
         boxTitles.forEach(item => {
             item.style.display = 'none';
@@ -325,6 +330,12 @@ function showhideBonuses () {
             item.style.display = 'none';
         });
     };
+
+    if (mode == 'Compressor') {
+        encElmnt.style.wordBreak = 'break-all';
+    } else {
+        encElmnt.style.wordBreak = 'normal';
+    }
 };
 
 function autoTranslate () {
