@@ -23,8 +23,20 @@
     --button-box-click: hsl(225, 50%, 70%);
     --box-red: hsl(350, 30%, 83%);
     --header-color: hsl(225, 75%, 54%); /* I can't decide the exact hue! */
-    --alert-background: rgb(67, 67, 67);
-    --alert-font-color: rgb(230, 230, 230);
+    --alert-background: hsl(224, 81%, 85%);
+    --alert-font-color: black;
+}
+
+.dark {
+    --backdrop: hsl(225, 15%, 12%);
+    --font-color: hsl(0, 0%, 92%);
+    --button-box: hsl(225, 15%, 22%);
+    --button-box-hover: hsl(225, 15%, 28%);
+    --button-box-click: hsl(224, 39%, 41%);
+    --box-red: hsl(351, 30%, 21%);
+    --header-color: hsl(225, 62%, 46%);
+    --alert-background: hsl(0, 0%, 20%);
+    --alert-font-color: hsl(0, 0%, 95%);
 }
 
 body {
@@ -253,7 +265,7 @@ button {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--button-box-hover);
+    background-color: hsl(225, 35%, 85%);
     border-radius: 34px;
     transition: 0.4s;
 }
@@ -273,7 +285,7 @@ button {
 
 /* Track color shift when checked */
 input:checked + .slider {
-    background-color: rgb(98, 218, 83);
+    background-color: hsl(225, 18%, 67%);
 }
 
 /* Knob translation when checked */
@@ -301,9 +313,8 @@ input:checked + .slider::before {
     border-radius: 8px;
     font-family: inherit;
     font-size: inherit;
-    color: var(--button-box);
+    color: var(--alert-font-color);
     background-color: var(--alert-background);
-    /* animation-timing-function: ease-in-out; */
 }
 
 .pop-up {

@@ -7,7 +7,17 @@
 	<link rel="stylesheet" href="index.css">
 	<!-- TODO favicon -->
 	<script>
-		// TODO change light/dark mode based on localstorage
+		var darkDesired = false;
+		if (localStorage.getItem('dark mode') === 'true') {
+			darkDesired = true;
+		} else if (localStorage.getItem('dark mode') !== 'false') {
+			darkDesired = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			localStorage.setItem('dark mode', `${darkDesired}`);
+		};
+		if (darkDesired) {
+			document.documentElement.className = 'dark';
+
+		}
 	</script>
 </head>
 
@@ -32,6 +42,11 @@
 		<input type="checkbox" role="switch" id="darkSwitch">
 		<span class="slider"></span>
 	</label>
+	<script>
+		if (darkDesired) {
+			document.getElementById("darkSwitch").checked = true;
+		};
+	</script>
 </header>
 
 <main>

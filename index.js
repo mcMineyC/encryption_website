@@ -416,5 +416,11 @@ encBaseSel.addEventListener('change', () => {
 });
 
 darkToggle.addEventListener('change', (event) => {
-    alert("Whoops! Sorry, but dark mode doesn't work yet.");
+    if (event.target.checked) {
+    document.documentElement.className = 'dark';
+    localStorage.setItem('dark mode', 'true');
+    } else {
+    document.documentElement.className = 'light';
+    localStorage.setItem('dark mode', 'false');
+    };
 });
