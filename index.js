@@ -240,7 +240,8 @@ function base_compress () {
         .replace(/\n/g, '\\n')
         .replace(/\t/g, '\\t')
         .replace(/{/g, '\\{')
-        .replace(/}/g, '\\}');
+        .replace(/}/g, '\\}')
+        .replace(/\\/g, '\\\\');
     
     // Generate output string.
     encElmnt.value = '#{' + baseStr + '}' + numba64;
@@ -252,6 +253,7 @@ function base_decompress () {
     const message = encElmnt.value;
     meMatch = message.match(comp_regex);
     outBase = meMatch[1]
+        .replace(/\\\\/g, '\\')
         .replace(/\\n/g, '\n')
         .replace(/\\t/g, '\t')
         .replace(/\\{/g, '{')
