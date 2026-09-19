@@ -237,11 +237,11 @@ function base_compress () {
 
     // Escape newline, tab, and curly-brace characters.
     baseStr = baseStr
+        .replace(/\\/g, '\\\\')
         .replace(/\n/g, '\\n')
         .replace(/\t/g, '\\t')
         .replace(/{/g, '\\{')
-        .replace(/}/g, '\\}')
-        .replace(/\\/g, '\\\\');
+        .replace(/}/g, '\\}');
     
     // Generate output string.
     encElmnt.value = '#{' + baseStr + '}' + numba64;
