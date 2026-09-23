@@ -16,6 +16,7 @@ const lower_let = 'abcdefghijklmnopqrstuvwxyz';
 const upper_let = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const qwerty = `\`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?`;
 const wertyu = `1234567890-=\`wertyuiop[]\\qsdfghjkl;'axcvbnm,./z!@#$%^&*()_+~WERTYUIOP{}|QSDFGHJKL:"AXCVBNM<>?Z`;
+const moqwerty = qwerty + " \n";
 const alphabet = 'abcdefghijklmnopqrstuvwxyz' + 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
 const rot13bet = 'nopqrstuvwxyzabcdefghijklm' + 'nopqrstuvwxyzabcdefghijklm'.toUpperCase();
 const bases = {
@@ -32,6 +33,7 @@ const translate_in = {
     'ROT13': () => substitute(unencElmnt, encElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(unencElmnt, encElmnt, qwerty, wertyu),
     'Vigenère Cipher': () => vigenere(unencElmnt, encElmnt, 1),
+    'Vigenère Deluxe': () => superTable(unencElmnt, encElmnt, 1),
     'Base Convert': () => convert_base_box(unencElmnt, encElmnt, bases[unencBaseSel.value], bases[encBaseSel.value]),
     'Compressor': () => base_compress()
 };
@@ -41,6 +43,7 @@ const translate_out = {
     'ROT13': () => substitute(encElmnt, unencElmnt, alphabet, rot13bet),
     'Keyboard Shift': () => substitute(encElmnt, unencElmnt, wertyu, qwerty),
     'Vigenère Cipher': () => vigenere(encElmnt, unencElmnt, -1),
+    'Vigenère Deluxe': () => superTable(encElmnt, unencElmnt, -1),
     'Base Convert': () => convert_base_box(encElmnt, unencElmnt, bases[encBaseSel.value], bases[unencBaseSel.value]),
     'Compressor': () => base_decompress()
 };
@@ -51,6 +54,7 @@ const urlModeNames = {
     'ROT13': 'rot13',
     'Keyboard Shift': 'keyboard',
     'Vigenère Cipher': 'vigenere',
+    'Vigenère Deluxe': 'deluxev',
     'Base Convert': 'baseconv',
     'Compressor': 'compress'
 };
@@ -159,6 +163,55 @@ function vigenere (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for enc
     outputElmnt.value = output;
 };
 
+// Code for Password Saver (Vigenere Deluxe, Plus, whatever)
+
+function superTable (inputElmnt, outputElmnt, keyDir) { // Set keyDir to 1 for encryption, -1 for decryption.
+
+    let message = inputElmnt.value;
+    let output = '';
+
+    // Unescape chars
+    if (keyDir == -1) {
+        message = message
+        .replace(/\\\\/g, '\\')
+        .replace(/\\n/g, '\n');
+    };
+
+    let key = '';
+    // only use acceptable chars in key
+    for (let char of keyBox.value) {
+        if (moqwerty.includes(char)) {
+            key += char;
+        };
+    };
+    if (key === '') {
+        key = "`";
+    };
+
+    let keyI = 0;
+    let key_digit;
+
+    for (let char of message) {
+
+        key_digit = moqwerty.indexOf(key[keyI]) * keyDir; // This is the value that the message is shifted by
+        output += moqwerty[mod(moqwerty.indexOf(char)+key_digit, 96)];
+
+        keyI++;
+        if (keyI >= key.length) {
+            keyI = 0;
+        };
+    };
+
+    // Escape chars
+    if (keyDir == 1) {
+        output = output
+            .replace(/\\/g, '\\\\')
+            .replace(/\n/g, '\\n');
+    };
+
+    outputElmnt.value = output;
+};
+
 function myReverse(inputElmnt, outputElmnt) {
     outputElmnt.value = [...inputElmnt.value].reverse().join('')
 };
@@ -242,7 +295,7 @@ function base_compress () {
         .replace(/\t/g, '\\t')
         .replace(/{/g, '\\{')
         .replace(/}/g, '\\}');
-    
+
     // Generate output string.
     encElmnt.value = '#{' + baseStr + '}' + numba64;
 };
@@ -321,7 +374,7 @@ async function copyText(text) {
 function showhideBonuses () {
     // Show necessary bonus info
 
-    if (mode == 'Vigenère Cipher') {
+    if (mode == 'Vigenère Cipher' || mode == 'Vigenère Deluxe') {
         extraBox.style.display = 'block';
     } else {
         extraBox.style.display = 'none';
@@ -343,7 +396,7 @@ function showhideBonuses () {
         });
     };
 
-    if (mode == 'Compressor') {
+    if (mode == 'Compressor' || mode == 'Vigenère Deluxe') {
         encElmnt.style.wordBreak = 'break-all';
     } else {
         encElmnt.style.wordBreak = 'normal';
