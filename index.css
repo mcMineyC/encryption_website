@@ -181,7 +181,7 @@ textarea {
         flex-direction: row;
     }
 
-    .circleButton:hover {
+    button:hover {
         transition: background-color 0.3s ease;
         background-color: var(--button-box-hover);
     }
@@ -224,20 +224,30 @@ textarea:focus {
 
 button {
     cursor: pointer;
+    display: inline-block;
+    border: none;
+    background-color: var(--button-box);
 }
 
 .circleButton {
-    display: inline-block;
     height: 45px;
     width: 45px;
     padding: 0px;
     padding-top: 3px;
     border-radius: 50%;
-    border: none;
-    background-color: var(--button-box);
 }
 
-.circleButton:active {
+.textButton {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    border: 1px solid var(--header-color);
+    
+    padding: 3px 12px 2px 12px;
+    border-radius: 9999px;
+}
+
+button:active {
     transition: none;
     background-color: var(--button-box-click);
 }
@@ -336,4 +346,9 @@ input:checked + .slider::before {
     width: 200px;
     overflow: hidden;
     height: 55px; /* = 31 + 2*12, word height plus the padding. */
+}
+
+#save_div {
+    padding: 16px;
+    padding-left: 0px;
 }

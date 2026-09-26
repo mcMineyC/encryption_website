@@ -119,6 +119,10 @@
 	</div>
 	<div id="bonusKeyBox" style="display: none;">
 		<div style="height:45px; font-weight:bold; font-size:25px;">Key</div>
+		<div id="save_div" style="display: none;">
+			<button class="textButton" title="Save key to cache" onclick="saveToCache();">Save</button>
+			<button class="textButton" title="Load key from cache" onclick="loadFromCache();">Load</button>
+		</div>
 		<textarea id="key" oninput="key_resize()">keyword</textarea>
 	</div>
 	<div id="info">

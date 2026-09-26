@@ -6,6 +6,7 @@ const unencElmnt = document.getElementById("unencrypted");
 const textDaddy = document.getElementById("container");
 const copyFlag = document.getElementById("copyAlert");
 const darkToggle = document.getElementById("darkSwitch");
+const saveBox = document.getElementById("save_div");
 const extraBox = document.getElementById("bonusKeyBox");
 const keyBox = document.getElementById("key");
 const boxTitles = document.querySelectorAll('.fieldTitle');
@@ -380,6 +381,12 @@ function showhideBonuses () {
         extraBox.style.display = 'none';
     };
 
+    if (mode == 'Vigenère Deluxe') {
+        saveBox.style.display = 'block';
+    } else {
+        saveBox.style.display = 'none';
+    };
+
     if (mode == 'Base Convert') {
         boxTitles.forEach(item => {
             item.style.display = 'none';
@@ -413,6 +420,17 @@ function autoTranslate () {
         translate_out[mode]();
     };
     resize();
+};
+
+function saveToCache() {
+    if (confirm("Are you sure you want to overwrite your last save?")) {
+        localStorage.setItem('savedKey', keyBox.value);
+}};
+
+function loadFromCache() {
+    keyBox.value = localStorage.getItem('savedKey');
+    autoTranslate();
+    key_resize();
 };
 
 // Execute onload:
